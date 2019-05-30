@@ -11,6 +11,8 @@ const predictions = (state = initialState, action) => {
           return {...state,isFetching:true}
       case 'RECEIVE_POST' :
           return {...state,items:action.data,isFetching:false}
+      case 'SET_LOCATION' :
+          return initialState
     default:
       return state
   }

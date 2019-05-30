@@ -7,32 +7,30 @@ export const service = new window.google.maps.places.AutocompleteService();
     type: 'SET_LOCATION',
     location: location
   })
-export const getLocation = (placeId) => (dispatch) => {
+  export const requestPost = () => ({
+    type: 'REQUEST_POST'
+  })
+  export const receivedPost = (_data) => ({
+    type: 'RECEIVE_POST',
+    data: _data
+  })
+  export const resetPredictions = () => ({
+    type: 'RESET_PREDICTIONS'
+  })
 
+export const getLocation = (placeId) => (dispatch) => {
   const request = {
     placeId: placeId
   }
-  
-
   geocoder.geocode(request,function(res){
-    console.log(res);
-    const location = res[0];
-    dispatch(setLocation(location));
-
+    const location = res[0] || null;
+    if(location !== null) {
+      dispatch(setLocation(location));
+    }
   })
-
 }
 
-export const requestPost = () => ({
-  type: 'REQUEST_POST'
-})
-export const receivedPost = (_data) => ({
-  type: 'RECEIVE_POST',
-  data: _data
-})
-export const resetPredictions = () => ({
-  type: 'RESET_PREDICTIONS'
-})
+
 export const getPredictions = (str) => (dispatch) => {
     if(!str.length) {
       dispatch(resetPredictions());
@@ -43,11 +41,8 @@ export const getPredictions = (str) => (dispatch) => {
       input: str,
     };
   service.getPlacePredictions(request, function(data){
-    dispatch(receivedPost(data))
+    const _data = data || [];
+    dispatch(receivedPost(_data))
   });
 
 }
-export const addUserSearchKey = text => ({
-    type: 'ADD_USER_SEARCH_KEY',
-    text
-  })
