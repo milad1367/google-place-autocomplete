@@ -6,11 +6,11 @@ const style = {
   height: '100vh'
 }
 
-const PredictionList = ({ predictions,onClick,location }) => (
+const PredictionList = ({ predictions,onSelect,location }) => (
   <div>
     <ul>
       {predictions.map(item =>
-        <li key = {item.id} onClick={()=>onClick(item.place_id)}>
+        <li key = {item.id} onClick={()=>onSelect(item.place_id)}>
           {item.description}
         </li>
       )}
@@ -23,7 +23,9 @@ const PredictionList = ({ predictions,onClick,location }) => (
 )
 
 PredictionList.propTypes = {
-    predictions: PropTypes.array.isRequired
+    predictions: PropTypes.array.isRequired,
+    onSelect: PropTypes.func.isRequired,
+    location : PropTypes.object.isRequired
 }
 
 export default PredictionList

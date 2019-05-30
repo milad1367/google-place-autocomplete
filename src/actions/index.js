@@ -32,6 +32,7 @@ export const getLocation = (placeId) => (dispatch) => {
 
 
 export const getPredictions = (str) => (dispatch) => {
+  console.log(str);
     if(!str.length) {
       dispatch(resetPredictions());
       return
