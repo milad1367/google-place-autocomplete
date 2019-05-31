@@ -17,10 +17,15 @@ export const service = new window.google.maps.places.AutocompleteService();
   export const resetPredictions = () => ({
     type: 'RESET_PREDICTIONS'
   })
+  export const addUserSearchHistory = (value) => ({
+    type: 'ADD_USER_SEARCH_HISTORY',
+    value: value
+  }) 
 
-export const getLocation = (placeId) => (dispatch) => {
+export const getLocation = (value) => (dispatch) => {
+  dispatch(addUserSearchHistory(value.userSearch));
   const request = {
-    placeId: placeId
+    placeId: value.placeId
   }
   geocoder.geocode(request,function(res){
     const location = res[0] || null;
@@ -32,7 +37,6 @@ export const getLocation = (placeId) => (dispatch) => {
 
 
 export const getPredictions = (str) => (dispatch) => {
-  console.log(str);
     if(!str.length) {
       dispatch(resetPredictions());
       return

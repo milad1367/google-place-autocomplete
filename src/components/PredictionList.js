@@ -10,8 +10,8 @@ const PredictionList = ({ predictions,onSelect,location }) => (
   <div>
     <ul>
       {predictions.map(item =>
-        <li key = {item.id} onClick={()=>onSelect(item.place_id)}>
-          {item.description}
+        <li key = {item.place_id} onClick={()=>onSelect(item.place_id)}>
+          {item.description}{item.formatted_address}
         </li>
       )}
     </ul>
