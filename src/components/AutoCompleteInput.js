@@ -4,17 +4,17 @@ import  PredictionList  from './PredictionList'
 import Input from '@material-ui/core/Input';
 import HistoryList from './HistoryList';
 import Map from './Map'
+import onClickOutside from "react-onclickoutside";   
 
 const mapDivStyle = {
   width: '100vw',
   height: '100vh'
 }
-
-
-
-   
-
+  
 class AutoCompleteInput extends React.Component {
+  handleClickOutside = evt => {
+    this.props.onBlur();
+  };
   render() {
     return (
     <div>
@@ -25,7 +25,6 @@ class AutoCompleteInput extends React.Component {
           value={this.props.value} 
           onChange={ e => this.props.onChange(e.target.value)} 
           onFocus={this.props.onFocus}
-          onBlur={this.props.onBlur}
       />
       {this.props.showHistory?
       <HistoryList list={this.props.userHistory} onClick={this.props.selectFromHistory}  />
@@ -61,4 +60,4 @@ AutoCompleteInput.propTypes = {
 AutoCompleteInput.defaultProps = {
   userHistory: [],
 }
-export default AutoCompleteInput;
+export default onClickOutside(AutoCompleteInput);

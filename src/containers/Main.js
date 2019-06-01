@@ -49,17 +49,8 @@ class Main extends Component {
     }
   }
   onBlur = () => {
-    setTimeout(
-      () => {
-        if(this.state.showHistory) {
-          this.setState({showHistory: false});
-        }
-        
-
-      },200
-      
-    );
-
+    this.setState({showHistory: false});
+    this.setState({showPrediction: false});
   }
   selectFromHistory = (value) => {
     this.inputHandleChange(value);
