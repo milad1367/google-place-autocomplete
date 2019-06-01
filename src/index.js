@@ -13,7 +13,7 @@ const rootElement = document.getElementById('root');
 const store = createStore(reducer,
     applyMiddleware(thunk)
     );
-store.subscribe(()=>console.log(store.getState()));
+//store.subscribe(()=>console.log(store.getState()));
 ReactDOM.render(
     <Provider store={store}>
        <Main />

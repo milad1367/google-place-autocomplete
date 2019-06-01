@@ -1,26 +1,40 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Map from './Map'
-const style = {
-  width: '100vw',
-  height: '100vh'
-}
+import { makeStyles } from '@material-ui/core/styles';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import Paper from '@material-ui/core/Paper';
 
-const PredictionList = ({ predictions,onSelect,location }) => (
-  <div>
-    <ul>
-      {predictions.map(item =>
-        <li key = {item.place_id} onClick={()=>onSelect(item.place_id)}>
-          {item.description}{item.formatted_address}
-        </li>
-      )}
-    </ul>
-    <div style={style}>
-      <Map location ={location} />
+
+const useStyles = makeStyles(theme => ({
+  root: {
+    width: '100%',
+    maxWidth: 360,
+    backgroundColor: theme.palette.background.paper,
+  },
+  nested: {
+    paddingLeft: theme.spacing(4),
+  },
+}));
+const PredictionList = ({ predictions,onSelect,location }) => {
+  const classes = useStyles();
+  return(
+    <div>
+      {predictions.length ? 
+        <Paper>
+          <List component="nav" className={classes.root}>
+            {predictions.map(item =>
+            <ListItem key = {item.place_id} onClick={(e)=>{onSelect(item);e.stopPropagation()}} button>
+              <ListItemText primary={item.description} />
+            </ListItem>
+            )}
+          </List>
+        </Paper>
+      :null}
     </div>
-  </div>
-
-)
+  )
+}
 
 PredictionList.propTypes = {
     predictions: PropTypes.array.isRequired,
