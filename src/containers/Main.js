@@ -2,12 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { getPredictions } from '../actions'
 import { getLocation } from '../actions'
-import Container from '@material-ui/core/Container';
 import AutoCompleteInput from '../components/AutoCompleteInput'
-import Grid from '@material-ui/core/Grid';
-import { makeStyles } from '@material-ui/core/styles';
-
-
 
 class Main extends Component {
   constructor(props) {
@@ -17,9 +12,7 @@ class Main extends Component {
   }
   componentDidMount(){
     this.setState({
-      userHistory: this.props.searchHistory
-
-    
+      userHistory: this.props.searchHistory    
     });
 
   }
@@ -49,8 +42,7 @@ class Main extends Component {
     }
   }
   onBlur = () => {
-    this.setState({showHistory: false});
-    this.setState({showPrediction: false});
+    this.setState({showHistory: false,showPrediction: false});
   }
   selectFromHistory = (value) => {
     this.inputHandleChange(value);
@@ -59,28 +51,19 @@ class Main extends Component {
   render() {
     const { predictions,location } = this.props
     return (
-          <Container>
-            <Grid item xs={12}>
-              <h1>
-                 Wellcome React Redux AutoComplete!
-              </h1>
-            </Grid>
-            <Grid item xs={4}>
-              <AutoCompleteInput 
-                userHistory={this.props.searchHistory} 
-                location={location} 
-                onSelect={this.onSelect} 
-                onFocus={this.onFocus} 
-                sugesstion={predictions.items} 
-                value={this.state.input}  
-                onChange={(value) => this.inputHandleChange(value)}
-                showHistory={this.state.showHistory}
-                onBlur={this.onBlur}
-                selectFromHistory = {this.selectFromHistory}
-                showPrediction = {this.state.showPrediction}
-                />
-              </Grid>
-          </Container>
+      <AutoCompleteInput 
+        userHistory={this.props.searchHistory} 
+        location={location} 
+        onSelect={this.onSelect} 
+        onFocus={this.onFocus} 
+        sugesstion={predictions.items} 
+        value={this.state.input}  
+        onChange={(value) => this.inputHandleChange(value)}
+        showHistory={this.state.showHistory}
+        onBlur={this.onBlur}
+        selectFromHistory = {this.selectFromHistory}
+        showPrediction = {this.state.showPrediction}
+        />
     )
   }
 }

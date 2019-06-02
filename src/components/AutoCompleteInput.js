@@ -5,11 +5,24 @@ import Input from '@material-ui/core/Input';
 import HistoryList from './HistoryList';
 import Map from './Map'
 import onClickOutside from "react-onclickoutside";   
+import Paper from '@material-ui/core/Paper';
 
-const mapDivStyle = {
-  width: '100vw',
-  height: '100vh'
+const style = {
+  parent:{
+    position:'relative'
+  },
+  autoComplete: {
+    zIndex: 10,
+    position:'absolute',
+    right:10,
+    top:10,
+    width: '30vw',
+  },
+  input: {
+    padding: 16
+  }
 }
+
   
 class AutoCompleteInput extends React.Component {
   handleClickOutside = evt => {
@@ -17,17 +30,26 @@ class AutoCompleteInput extends React.Component {
   };
   render() {
     return (
-    <div>
-      <Input 
-          placeholder="Type your addres"
-          fullWidth
-          type="text" 
-          value={this.props.value} 
-          onChange={ e => this.props.onChange(e.target.value)} 
-          onFocus={this.props.onFocus}
-      />
+    <div style={style.parent}>
+    <div style={style.autoComplete}>
+    <Paper>
+        <Input 
+            style={style.input}
+            placeholder="Type your addres"
+            fullWidth
+            type="text" 
+            value={this.props.value} 
+            onChange={ e => this.props.onChange(e.target.value)} 
+            onFocus={this.props.onFocus}
+        />
+      </Paper>
+
+
       {this.props.showHistory?
-      <HistoryList list={this.props.userHistory} onClick={this.props.selectFromHistory}  />
+      <HistoryList 
+        list={this.props.userHistory} 
+        onClick={this.props.selectFromHistory}  
+      />
       :null}
       {this.props.showPrediction?        
       <PredictionList 
@@ -36,9 +58,10 @@ class AutoCompleteInput extends React.Component {
            location={this.props.location}
          />
       :null}
-      <div style={mapDivStyle}>
-        <Map location ={this.props.location} />
-      </div>
+
+    </div>
+
+        <Map  location ={this.props.location} />
     </div>
   )}
 }

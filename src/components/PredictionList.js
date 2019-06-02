@@ -9,8 +9,6 @@ import Paper from '@material-ui/core/Paper';
 
 const useStyles = makeStyles(theme => ({
   root: {
-    width: '100%',
-    maxWidth: 360,
     backgroundColor: theme.palette.background.paper,
   },
   nested: {
@@ -26,6 +24,7 @@ const PredictionList = ({ predictions,onSelect,location }) => {
           <List component="nav" className={classes.root}>
             {predictions.map(item =>
             <ListItem key = {item.place_id} onClick={(e)=>{onSelect(item);e.stopPropagation()}} button>
+              <i className="material-icons">location_on</i>
               <ListItemText primary={item.description} />
             </ListItem>
             )}

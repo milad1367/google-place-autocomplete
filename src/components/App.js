@@ -1,13 +1,44 @@
 import React from 'react';
-import UserInput from '../containers/UserInput';
-import PredictionsContainer from '../containers/PredictionsContainer';
-function App () {
-  return (
-    <div className="App">
-      <UserInput />
-      <PredictionsContainer />
-    </div>
-  );
-}
+import PropTypes from 'prop-types';
+import Main from '../containers/Main'
+import { withStyles } from "@material-ui/core/styles";
+import Grid from "@material-ui/core/Grid";
+import { red } from '@material-ui/core/colors';
 
-export default App;
+const styles = theme => ({
+  root: {
+    flexGrow: 1
+  },
+  title: {
+    textAlign: 'center',
+  },
+  test: {
+    margin: 80000,
+    color:'red'
+  }
+});
+class App extends React.Component {
+  render() {
+    const { classes } = this.props;
+    return (
+      <Grid container className={classes.root}>
+        <Grid item xs={12}>
+          <Grid container justify="center">
+            <Grid  item xs={10}>
+              <h1>Wellcome to react redux autocomplete </h1>
+            </Grid>
+            <Grid item xs={12} container justify="center">
+            <Main />
+            </Grid>
+        </Grid>
+        </Grid>
+      </Grid>
+
+    );
+  }
+}
+App.propTypes = {
+  classes: PropTypes.object.isRequired
+};
+export default withStyles(styles)(App);
+

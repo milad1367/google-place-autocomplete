@@ -1,6 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom'
-
+const style = {
+  width: '83.2vw',
+  height: '75vh',
+  marginLeft: 'auto',
+  marginRight: 'auto'
+}
 class Map  extends React.Component {
     componentDidUpdate(prevProps, prevState) {
        if (prevProps.location != this.props.location) {
@@ -13,20 +18,17 @@ class Map  extends React.Component {
 
     }
     componentDidMount() {
-        //const {google} = this.props;
         const maps = window.google.maps;
-  
         const mapRef = this.refs.map;
-
         const node = ReactDOM.findDOMNode(mapRef);
-  
         let zoom = 14;
         let lat = 37.774929;
         let lng = -122.419416;
         const center = new maps.LatLng(lat, lng);
         const mapConfig = Object.assign({}, {
           center: center,
-          zoom: zoom
+          zoom: zoom,
+          fullscreenControl: false
         })
         this.map = new maps.Map(node, mapConfig);
         this.marker = new  window.google.maps.Marker({
@@ -39,7 +41,7 @@ class Map  extends React.Component {
 
     render() {
       return (
-        <div className="map" ref='map'>
+        <div style={style} id="map" className="map" ref='map'>
         </div>
         
       )

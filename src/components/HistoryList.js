@@ -9,18 +9,15 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
     root: {
-      width: '100%',
-      maxWidth: 360,
       backgroundColor: theme.palette.background.paper,
     },
-    nested: {
-      paddingLeft: theme.spacing(4),
-    },
+    item: {
+      marginLeft: theme.spacing(1),
+    }
   }));
 
 const HistoryList = ({list,onClick}) => {
     const classes = useStyles();
-    console.log(list);
     return(
       <div>
           {list.length?
@@ -28,7 +25,8 @@ const HistoryList = ({list,onClick}) => {
                 <List component="nav" className={classes.root}>
                     {list.map(item =>
                     <ListItem key={item}  onClick={()=>onClick(item)} button>
-                    <ListItemText primary={item} />
+                      <i className="material-icons">history</i>
+                      <ListItemText className={classes.item} primary={item} />
                     </ListItem>
                     )}
                 </List>
