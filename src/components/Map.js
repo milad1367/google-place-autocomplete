@@ -8,7 +8,7 @@ const style = {
 }
 class Map  extends React.Component {
     componentDidUpdate(prevProps, prevState) {
-       if (prevProps.location != this.props.location) {
+       if (prevProps.location !== this.props.location) {
             this.map.fitBounds(this.props.location.geometry.viewport);
             this.marker.setPosition(this.props.location.geometry.location);
             this.marker.setVisible(true);
