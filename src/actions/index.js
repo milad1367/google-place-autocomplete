@@ -1,8 +1,5 @@
 export const service = new window.google.maps.places.AutocompleteService();
-
-  const geocoder = new window.google.maps.Geocoder();
-  const OK = window.google.maps.GeocoderStatus.OK;
-
+  const geocoder = new window.google.maps.Geocoder();  
   export const setLocation = (location) => ({
     type: 'SET_LOCATION',
     location: location

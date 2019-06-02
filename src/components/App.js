@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import Main from '../containers/Main'
 import { withStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
-import { red } from '@material-ui/core/colors';
 
 const styles = theme => ({
   root: {
@@ -12,10 +11,6 @@ const styles = theme => ({
   title: {
     textAlign: 'center',
   },
-  test: {
-    margin: 80000,
-    color:'red'
-  }
 });
 class App extends React.Component {
   render() {
