@@ -10,3 +10,18 @@ html, body {
   margin: 0;
   padding: 0;
 }
+.autoComplete {
+  z-index: 10;
+  position: absolute;
+  right:10px;
+  top:10px;
+  width: 30vw;
+}
+@media (max-width: 600px) {
+  .autoComplete {
+    top: 61px;
+    width: 78vw;
+    right: 8px
+
+  }
+}
