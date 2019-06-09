@@ -28,7 +28,8 @@ class Map  extends React.Component {
         const mapConfig = Object.assign({}, {
           center: center,
           zoom: zoom,
-          fullscreenControl: false
+          fullscreenControl: false,
+          streetViewControl: false,
         })
         this.map = new maps.Map(node, mapConfig);
         this.marker = new  window.google.maps.Marker({

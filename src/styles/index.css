@@ -17,11 +17,11 @@ html, body {
   top:10px;
   width: 30vw;
 }
-@media (max-width: 600px) {
+@media (max-width: 900px) {
   .autoComplete {
     top: 61px;
     width: 78vw;
-    right: 8px
-
+    left: 0;
+    padding-left: 10px;
   }
 }
